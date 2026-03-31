@@ -1,4 +1,5 @@
 /**
+<<<<<<< HEAD
  * getBackendUrl — resolves the backend base URL at runtime.
  *
  * In production (Docker + nginx):
@@ -42,4 +43,39 @@ export function getApiUrl() {
         return `${window.location.origin}/api`;
     }
     return import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+=======
+ * Smart API configuration that works both locally and in containers
+ */
+export function getBackendUrl() {
+    // In production (Docker/Container), use relative URL
+    if (import.meta.env.PROD) {
+        return window.location.origin;
+    }
+    // In development, use localhost
+    return 'http://localhost:5000';
+}
+
+/**
+ * Smart Socket.IO server URL
+ */
+export function getSocketUrl() {
+    // In production (Docker/Container), use relative URL
+    if (import.meta.env.PROD) {
+        return window.location.origin;
+    }
+    // In development, use localhost
+    return 'http://localhost:5000';
+}
+
+/**
+ * Smart REST API base URL
+ */
+export function getApiUrl() {
+    // In production (Docker/Container), use relative URL
+    if (import.meta.env.PROD) {
+        return `${window.location.origin}/api`;
+    }
+    // In development, use localhost
+    return 'http://localhost:5000/api';
+>>>>>>> b02e1a7 (updating luminary)
 }

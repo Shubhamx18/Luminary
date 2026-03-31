@@ -4,6 +4,7 @@ metadata:
   name: backend
   namespace: luminary
 spec:
+<<<<<<< HEAD
   replicas: 1
   selector:
     matchLabels:
@@ -40,10 +41,51 @@ spec:
               port: 5000
             initialDelaySeconds: 20
             periodSeconds: 10
+=======
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: shubhamm18/luminary:backend
+        envFrom:
+        - configMapRef:
+            name: luminary-config
+        - secretRef:
+            name: luminary-secrets
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+>>>>>>> b02e1a7 (updating luminary)
 ---
 apiVersion: v1
 kind: Service
 metadata:
+<<<<<<< HEAD
   name: backend
   namespace: luminary
 spec:
@@ -55,3 +97,14 @@ spec:
     - port: 5000
       targetPort: 5000
       nodePort: 30500
+=======
+  name: backend-service
+  namespace: luminary
+spec:
+  selector:
+    app: backend
+  ports:
+  - port: 5000
+    targetPort: 5000
+  type: ClusterIP
+>>>>>>> b02e1a7 (updating luminary)

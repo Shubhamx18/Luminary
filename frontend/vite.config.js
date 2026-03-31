@@ -5,6 +5,7 @@ export default defineConfig({
     plugins: [react()],
     server: {
         port: 3000,
+<<<<<<< HEAD
         proxy: {
             '/api': {
                 target: 'http://localhost:5000',
@@ -16,6 +17,8 @@ export default defineConfig({
                 ws: true,
             },
         },
+=======
+>>>>>>> b02e1a7 (updating luminary)
     },
 })
 

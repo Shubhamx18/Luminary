@@ -12,11 +12,28 @@ const server = http.createServer(app);
 
 // ─── CORS ──────────────────────────────────────────────
 const corsOrigins = [
+<<<<<<< HEAD
     process.env.CORS_ORIGIN || 'http://localhost:3000',
     'http://localhost:3000',
     'http://localhost:5173',
 ];
 app.use(cors({ origin: corsOrigins, credentials: true }));
+=======
+    'http://localhost:3000',
+    'http://localhost:5173',
+    // Allow same origin for containerized environments
+];
+
+// In production/containerized environment, allow same origin
+if (process.env.NODE_ENV === 'production') {
+    corsOrigins.push(true); // Allows same origin
+}
+
+app.use(cors({
+    origin: corsOrigins,
+    credentials: true
+}));
+>>>>>>> b02e1a7 (updating luminary)
 
 // ─── Body Parsers ──────────────────────────────────────
 app.use(express.json());
@@ -24,7 +41,14 @@ app.use(express.urlencoded({ extended: true }));
 
 // ─── Socket.IO ─────────────────────────────────────────
 const io = new Server(server, {
+<<<<<<< HEAD
     cors: { origin: corsOrigins, methods: ['GET', 'POST'] }
+=======
+    cors: {
+        origin: corsOrigins,
+        methods: ['GET', 'POST']
+    }
+>>>>>>> b02e1a7 (updating luminary)
 });
 
 // Make io accessible to routes via req.app
@@ -246,22 +270,37 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
 // Agora configuration
 app.get('/api/config/agora', (req, res) => {
+<<<<<<< HEAD
     res.json({ appId: process.env.AGORA_APP_ID || '' });
+=======
+    res.json({ appId: 'e6061be9565b47e0b9705f86de2a42f5' });
+>>>>>>> b02e1a7 (updating luminary)
 });
 
 // Runtime config endpoint — frontend fetches this on startup
 app.get('/api/config/runtime', (req, res) => {
     res.json({
+<<<<<<< HEAD
         agoraAppId: process.env.AGORA_APP_ID || '',
         backendUrl: process.env.BACKEND_PUBLIC_URL || '',
         socketUrl: process.env.SOCKET_PUBLIC_URL || process.env.BACKEND_PUBLIC_URL || '',
+=======
+        agoraAppId: 'e6061be9565b47e0b9705f86de2a42f5',
+        backendUrl: 'http://localhost:5000',
+        socketUrl: 'http://localhost:5000',
+>>>>>>> b02e1a7 (updating luminary)
     });
 });
 
 // Agora token generation
 app.get('/api/agora/token', (req, res) => {
+<<<<<<< HEAD
     const appId = process.env.AGORA_APP_ID;
     const appCertificate = process.env.AGORA_APP_CERTIFICATE;
+=======
+    const appId = 'e6061be9565b47e0b9705f86de2a42f5';
+    const appCertificate = '8bfbd4ed44254e25be4402e84f40d642';
+>>>>>>> b02e1a7 (updating luminary)
 
     if (!appId) {
         return res.status(500).json({ error: 'Agora App ID not configured' });
@@ -297,7 +336,11 @@ app.get('/api/agora/token', (req, res) => {
 });
 
 // ─── Start Server ──────────────────────────────────────
+<<<<<<< HEAD
 const PORT = process.env.BACKEND_PORT || process.env.PORT || 5000;
+=======
+const PORT = 5000;
+>>>>>>> b02e1a7 (updating luminary)
 
 async function start() {
     try {

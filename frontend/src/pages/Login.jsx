@@ -30,7 +30,41 @@ export default function Login() {
             }
             navigate('/dashboard');
         } catch (err) {
+<<<<<<< HEAD
             setError(err.response?.data?.error || err.response?.data?.message || 'Something went wrong');
+=======
+            console.log('Full error object:', err);
+            console.log('Error response:', err.response);
+            console.log('Error response data:', err.response?.data);
+            
+            // Try multiple ways to get the error message
+            let errorMessage = 'Something went wrong';
+            
+            if (err.response?.data) {
+                if (typeof err.response.data === 'string') {
+                    errorMessage = err.response.data;
+                } else if (err.response.data.message) {
+                    errorMessage = err.response.data.message;
+                } else if (err.response.data.error) {
+                    errorMessage = err.response.data.error;
+                } else if (err.response.data.detail) {
+                    errorMessage = err.response.data.detail;
+                }
+            } else if (err.message) {
+                errorMessage = err.message;
+            }
+            
+            console.log('Final extracted error message:', errorMessage);
+            
+            // More specific error handling
+            if (errorMessage.toLowerCase().includes('already registered') || errorMessage.toLowerCase().includes('email already')) {
+                setError('This email is already registered. Try signing in instead.');
+            } else if (errorMessage.toLowerCase().includes('invalid credentials') || errorMessage.toLowerCase().includes('invalid email or password')) {
+                setError('Invalid email or password. Please try again.');
+            } else {
+                setError(errorMessage);
+            }
+>>>>>>> b02e1a7 (updating luminary)
         } finally {
             setLoading(false);
         }
@@ -90,6 +124,28 @@ export default function Login() {
                         animation: 'slideUp .3s ease',
                     }}>
                         {error}
+<<<<<<< HEAD
+=======
+                        {error.includes('already registered') && (
+                            <button
+                                type="button"
+                                onClick={() => setIsLogin(true)}
+                                style={{
+                                    marginTop: 'var(--sp-sm)',
+                                    padding: 'var(--sp-xs) var(--sp-md)',
+                                    background: 'rgba(239,68,68,.2)',
+                                    border: '1px solid rgba(239,68,68,.3)',
+                                    borderRadius: 'var(--r-md)',
+                                    color: '#fca5a5',
+                                    fontSize: '.75rem',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s ease'
+                                }}
+                            >
+                                Sign In Instead
+                            </button>
+                        )}
+>>>>>>> b02e1a7 (updating luminary)
                     </div>
                 )}
 

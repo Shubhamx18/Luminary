@@ -5,6 +5,7 @@
 <br/>
 
 [![GitHub](https://img.shields.io/badge/GitHub-Shubhamx18%2FLuminary-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Shubhamx18/Luminary)
+<<<<<<< HEAD
 [![DockerHub](https://img.shields.io/badge/DockerHub-shubhamm18-2496ED?style=flat-square&logo=docker&logoColor=white)](https://hub.docker.com/u/shubhamm18)
 [![Jenkins](https://img.shields.io/badge/CI%2FCD-Jenkins-D24939?style=flat-square&logo=jenkins&logoColor=white)](#)
 [![ArgoCD](https://img.shields.io/badge/GitOps-ArgoCD-EF7B4D?style=flat-square&logo=argo&logoColor=white)](#)
@@ -14,6 +15,12 @@
 [![OWASP](https://img.shields.io/badge/Dependency-OWASP-000000?style=flat-square&logo=owasp&logoColor=white)](#)
 [![AWS](https://img.shields.io/badge/Cloud-AWS-FF9900?style=flat-square&logo=amazonaws&logoColor=white)](#)
 [![Grafana](https://img.shields.io/badge/Monitoring-Grafana-F46800?style=flat-square&logo=grafana&logoColor=white)](#)
+=======
+[![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=flat-square&logo=react&logoColor=white)](https://reactjs.org)
+[![Node.js](https://img.shields.io/badge/Node.js-18.20.0-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://mysql.com)
+[![Socket.IO](https://img.shields.io/badge/Socket.IO-4.6.1-010101?style=flat-square&logo=socket.io&logoColor=white)](https://socket.io)
+>>>>>>> b02e1a7 (updating luminary)
 
 <br/>
 
@@ -32,6 +39,7 @@
 
 ---
 
+<<<<<<< HEAD
 ## 📌 Project Deployment Flow
 
 <div align="center">
@@ -44,6 +52,58 @@ The diagram above shows the complete end-to-end flow:
 
 - **Top box (CI)** — Developer pushes code → Jenkins pulls from GitHub → OWASP dependency check → SonarQube code & quality gate analysis → Trivy filesystem scan → Docker build & push → Triggers CD Job
 - **Bottom box (CD)** — Jenkins CD updates Docker image version in k8s manifests → Pushes to GitHub → ArgoCD pulls and deploys on Kubernetes → Prometheus + Grafana monitoring → Gmail notification
+=======
+## � Quick Start
+
+Get Luminary running locally in just a few steps:
+
+### 📋 Prerequisites
+- **Node.js** (v18 or higher)
+- **MySQL** (v8.0 or higher)
+- **npm** (comes with Node.js)
+
+### ⚡ Setup Instructions
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Shubhamx18/Luminary.git
+   cd Luminary
+   ```
+
+2. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your MySQL credentials
+   ```
+
+3. **Install dependencies**
+   ```bash
+   # Backend dependencies
+   cd backend && npm install
+   
+   # Frontend dependencies
+   cd ../frontend && npm install
+   ```
+
+4. **Set up the database**
+   ```bash
+   # Create database and import schema
+   mysql -u root -p < database/schema.sql
+   ```
+
+5. **Start the application**
+   ```bash
+   # Start backend (in one terminal)
+   cd backend && npm start
+   
+   # Start frontend (in another terminal)
+   cd frontend && npm run dev
+   ```
+
+6. **Access the application**
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:5000
+>>>>>>> b02e1a7 (updating luminary)
 
 ---
 
@@ -51,6 +111,7 @@ The diagram above shows the complete end-to-end flow:
 
 | Category | Tool |
 |:---|:---|
+<<<<<<< HEAD
 | 📁 Source Control | GitHub |
 | ⚙️ CI/CD Orchestration | Jenkins (Master + Worker Node) |
 | 🔍 Dependency Scanning | OWASP Dependency-Check |
@@ -63,6 +124,15 @@ The diagram above shows the complete end-to-end flow:
 | 📈 Monitoring | Prometheus + Grafana (via Helm) |
 | 📧 Notification | Gmail SMTP — Jenkins Email Extension |
 | 🔧 Shared Pipeline Logic | Jenkins Shared Library |
+=======
+| 🎨 Frontend | React 18.2 + Vite |
+| ⚙️ Backend | Node.js + Express |
+| �️ Database | MySQL 8.0 |
+| � Real-time | Socket.IO |
+| � Authentication | JWT |
+| � Video Calling | Agora SDK |
+| �️ Security | bcryptjs |
+>>>>>>> b02e1a7 (updating luminary)
 
 ---
 
@@ -273,6 +343,52 @@ Luminary/
 
 ---
 
+<<<<<<< HEAD
+=======
+## ⚙️ Hardcoded Configuration
+
+This project uses hardcoded configurations for simplicity in local development. All sensitive values and environment variables are directly embedded in the source code:
+
+### **🔐 Authentication & Security**
+- **JWT Secret**: `luminary_dev_secret_key_2024`
+  - Location: `backend/controllers/authController.js` (line 6)
+  - Location: `backend/middleware/auth.js` (line 5)
+
+### **🗄️ Database Configuration**
+- **MySQL Connection**: (Configured via environment variables)
+  - **Environment Variables**:
+    - `DB_HOST=localhost`
+    - `DB_USER=root`
+    - `DB_PASSWORD=Shubham@6024`
+    - `DB_NAME=project_management_db`
+    - `MYSQL_PORT=3306`
+  - **Location**: `.env` file (root directory)
+  - **Used in**: `backend/config/db.js` (lines 8-12) with fallback defaults
+
+### **📹 Agora Video Calling Configuration**
+- **App ID**: `e6061be9565b47e0b9705f86de2a42f5`
+- **App Certificate**: `8bfbd4ed44254e25be4402e84f40d642`
+- **Locations**:
+  - `backend/server.js` (lines 237, 243, 251-252)
+  - Used in: `/api/config/agora`, `/api/config/runtime`, `/api/agora/token` endpoints
+
+### **🌐 Server Configuration**
+- **Backend Port**: `5000`
+  - Location: `backend/server.js` (line 288)
+- **Frontend Port**: `3000`
+  - Location: `frontend/vite.config.js` (line 7)
+
+### **🔧 API Endpoints**
+- **Backend URL**: `http://localhost:5000`
+- **Socket.IO URL**: `http://localhost:5000`
+- **API Base URL**: `http://localhost:5000/api`
+- Location: `frontend/src/services/config.js` (lines 5, 12, 19)
+
+> **⚠️ Security Note**: Database credentials are properly stored in environment variables. Other configurations (JWT, Agora, ports) are hardcoded for development simplicity. In production, all sensitive values should use environment variables or secure configuration management.
+
+---
+
+>>>>>>> b02e1a7 (updating luminary)
 ## 🔑 Jenkins Credentials Required
 
 | Credential ID | Type | Purpose |

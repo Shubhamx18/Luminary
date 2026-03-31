@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -11,6 +12,8 @@ spec:
     requests:
       storage: 5Gi
 ---
+=======
+>>>>>>> b02e1a7 (updating luminary)
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,6 +23,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
+<<<<<<< HEAD
       app: luminary
       component: mysql
   template:
@@ -51,6 +55,44 @@ spec:
         - name: mysql-storage
           persistentVolumeClaim:
             claimName: mysql-pvc
+=======
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8.0
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: luminary-secrets
+              key: DB_PASSWORD
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: luminary-config
+              key: DB_NAME
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: mysql-storage
+          mountPath: /var/lib/mysql
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+      volumes:
+      - name: mysql-storage
+        persistentVolumeClaim:
+          claimName: mysql-pvc
+>>>>>>> b02e1a7 (updating luminary)
 ---
 apiVersion: v1
 kind: Service
@@ -58,6 +100,7 @@ metadata:
   name: mysql-service
   namespace: luminary
 spec:
+<<<<<<< HEAD
   type: ClusterIP
   selector:
     app: luminary
@@ -65,3 +108,11 @@ spec:
   ports:
     - port: 3306
       targetPort: 3306
+=======
+  selector:
+    app: mysql
+  ports:
+  - port: 3306
+    targetPort: 3306
+  type: ClusterIP
+>>>>>>> b02e1a7 (updating luminary)

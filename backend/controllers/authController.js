@@ -2,8 +2,16 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { getPool } = require('../config/db');
 
+<<<<<<< HEAD
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET || 'dev_secret_key', { expiresIn: '30d' });
+=======
+// Hardcoded JWT secret for simplicity
+const JWT_SECRET = 'luminary_dev_secret_key_2024';
+
+const generateToken = (id) => {
+    return jwt.sign({ id }, JWT_SECRET, { expiresIn: '30d' });
+>>>>>>> b02e1a7 (updating luminary)
 };
 
 // POST /api/auth/register

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> b02e1a7 (updating luminary)
 version: '3.8'
 
 services:
@@ -11,7 +14,11 @@ services:
       MYSQL_DATABASE: ${DB_NAME}
     volumes:
       - mysql_data:/var/lib/mysql
+<<<<<<< HEAD
       - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+=======
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+>>>>>>> b02e1a7 (updating luminary)
     networks:
       - luminary-network
     healthcheck:
