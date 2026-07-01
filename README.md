@@ -5,7 +5,6 @@
 <br/>
 
 [![GitHub](https://img.shields.io/badge/GitHub-Shubhamx18%2FLuminary-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Shubhamx18/Luminary)
-<<<<<<< HEAD
 [![DockerHub](https://img.shields.io/badge/DockerHub-shubhamm18-2496ED?style=flat-square&logo=docker&logoColor=white)](https://hub.docker.com/u/shubhamm18)
 [![Jenkins](https://img.shields.io/badge/CI%2FCD-Jenkins-D24939?style=flat-square&logo=jenkins&logoColor=white)](#)
 [![ArgoCD](https://img.shields.io/badge/GitOps-ArgoCD-EF7B4D?style=flat-square&logo=argo&logoColor=white)](#)
